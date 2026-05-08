@@ -9,33 +9,33 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #f0f2f5;
             margin: 0;
-            padding: 20px;
+            padding: 10px; /* Ridotto per mobile */
             color: #333;
         }
         .container {
             max-width: 1300px;
             margin: auto;
             background: white;
-            padding: 25px;
+            padding: 15px; /* Ridotto per mobile */
             box-shadow: 0 4px 15px rgba(0,0,0,0.15);
             border-radius: 8px;
         }
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             border-bottom: 2px solid #003366;
             padding-bottom: 10px;
         }
-        h1 { color: #000; font-size: 1.4em; margin-bottom: 5px; text-transform: uppercase; }
-        h2 { color: #d9534f; font-size: 1.2em; margin-top: 0; }
+        h1 { color: #000; font-size: 1.2em; margin-bottom: 5px; text-transform: uppercase; }
+        h2 { color: #d9534f; font-size: 1em; margin-top: 0; }
         
         .calendar-banner {
             background-color: #003366;
             color: white;
             text-align: center;
-            padding: 12px;
+            padding: 10px;
             font-weight: bold;
-            font-size: 1.1em;
+            font-size: 1em;
             letter-spacing: 2px;
             margin-bottom: 20px;
         }
@@ -43,40 +43,54 @@
         .tables-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 30px;
+            gap: 20px;
+        }
+
+        /* --- FIX PER IL MOBILE --- */
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto; /* Permette lo scorrimento laterale */
+            -webkit-overflow-scrolling: touch;
+            margin-bottom: 20px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85em;
+            min-width: 600px; /* Impedisce alle colonne di schiacciarsi troppo */
         }
 
         th {
             background-color: #003366;
             color: white;
-            padding: 10px 5px;
+            padding: 8px 4px;
             border: 1px solid #aaa;
             text-transform: uppercase;
         }
 
         td {
             border: 1px solid #ccc;
-            padding: 7px 4px;
+            padding: 6px 4px;
             text-align: center;
             font-weight: 700;
         }
 
-        /* Colori Squadre specifici */
-        .bayern { color: #ff0000; } /* Rosso */
-        .arsenal { color: #228b22; } /* Verde */
-        .barcellona { color: #0055a4; } /* Blu */
+        .bayern { color: #ff0000; }
+        .arsenal { color: #228b22; }
+        .barcellona { color: #0055a4; }
 
         tr:nth-child(even) { background-color: #f2f2f2; }
-        tr:hover { background-color: #e9ecef; }
 
+        /* Responsive Breakpoints */
         @media (max-width: 1000px) {
             .tables-container { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1em; }
+            h2 { font-size: 0.9em; }
+            .container { padding: 10px; }
         }
     </style>
 </head>
@@ -84,46 +98,44 @@
 
 <div class="container">
     <header>
-        <h1>CALENDARIO TROFEO INTERNO "MEDITERRANEO VILLAGE FOOTBALL SOCCER"</h1>
+        <h1>CALENDARIO TROFEO INTERNO "MEDITERRANEO VILLAGE"</h1>
         <h2>CATEGORIA "PICCOLI AMICI 2019/2020/2021"</h2>
     </header>
 
     <div class="calendar-banner">CALENDARIO</div>
 
     <div class="tables-container">
-        <!-- TABELLA SINISTRA (11/05 - 18/05) -->
-        <table id="tableLeft">
-            <thead>
-                <tr>
-                    <th>HOME</th>
-                    <th>AWAY</th>
-                    <th>DATA</th>
-                    <th>GIORNO</th>
-                    <th>ORA</th>
-                    <th>RISULTATO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Generato da JS -->
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table id="tableLeft">
+                <thead>
+                    <tr>
+                        <th>HOME</th>
+                        <th>AWAY</th>
+                        <th>DATA</th>
+                        <th>GIORNO</th>
+                        <th>ORA</th>
+                        <th>RIS.</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
 
-        <!-- TABELLA DESTRA (20/05 - 27/05) -->
-        <table id="tableRight">
-            <thead>
-                <tr>
-                    <th>HOME</th>
-                    <th>AWAY</th>
-                    <th>DATA</th>
-                    <th>GIORNO</th>
-                    <th>ORA</th>
-                    <th>RISULTATO</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Generato da JS -->
-            </tbody>
-        </table>
+        <div class="table-wrapper">
+            <table id="tableRight">
+                <thead>
+                    <tr>
+                        <th>HOME</th>
+                        <th>AWAY</th>
+                        <th>DATA</th>
+                        <th>GIORNO</th>
+                        <th>ORA</th>
+                        <th>RIS.</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
     </div>
 </div>
 
@@ -135,7 +147,6 @@
     };
 
     const matchesLeft = [
-        // 11/05
         {h: "BAYERN MONACO", a: "ARSENAL", d: "11/05/2026", g: "LUNEDI'", t: "16:30"},
         {h: "ARSENAL", a: "BARCELLONA", d: "11/05/2026", g: "LUNEDI'", t: "16:37"},
         {h: "BAYERN MONACO", a: "BARCELLONA", d: "11/05/2026", g: "LUNEDI'", t: "16:44"},
@@ -145,7 +156,6 @@
         {h: "BAYERN MONACO", a: "ARSENAL", d: "11/05/2026", g: "LUNEDI'", t: "17:12"},
         {h: "ARSENAL", a: "BARCELLONA", d: "11/05/2026", g: "LUNEDI'", t: "17:19"},
         {h: "BAYERN MONACO", a: "BARCELLONA", d: "11/05/2026", g: "LUNEDI'", t: "17:26"},
-        // 13/05
         {h: "BAYERN MONACO", a: "ARSENAL", d: "13/05/2026", g: "MERCOLEDI'", t: "16:30"},
         {h: "ARSENAL", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "16:37"},
         {h: "BAYERN MONACO", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "16:44"},
@@ -153,91 +163,4 @@
         {h: "ARSENAL", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "16:58"},
         {h: "BAYERN MONACO", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:05"},
         {h: "BAYERN MONACO", a: "ARSENAL", d: "13/05/2026", g: "MERCOLEDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:26"},
-        // 15/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "15/05/2026", g: "VENERDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "15/05/2026", g: "VENERDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "15/05/2026", g: "VENERDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "15/05/2026", g: "VENERDI'", t: "17:26"},
-        // 18/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "18/05/2026", g: "LUNEDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "18/05/2026", g: "LUNEDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "18/05/2026", g: "LUNEDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "18/05/2026", g: "LUNEDI'", t: "17:26"}
-    ];
-
-    const matchesRight = [
-        // 20/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "20/05/2026", g: "MERCOLEDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "20/05/2026", g: "MERCOLEDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "20/05/2026", g: "MERCOLEDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:26"},
-        // 22/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "22/05/2026", g: "VENERDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "22/05/2026", g: "VENERDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "22/05/2026", g: "VENERDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "22/05/2026", g: "VENERDI'", t: "17:26"},
-        // 25/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "25/05/2026", g: "LUNEDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "25/05/2026", g: "LUNEDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "25/05/2026", g: "LUNEDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "25/05/2026", g: "LUNEDI'", t: "17:26"},
-        // 27/05
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "27/05/2026", g: "MERCOLEDI'", t: "16:30"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "16:37"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "16:44"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "27/05/2026", g: "MERCOLEDI'", t: "16:51"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "16:58"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:05"},
-        {h: "BAYERN MONACO", a: "ARSENAL", d: "27/05/2026", g: "MERCOLEDI'", t: "17:12"},
-        {h: "ARSENAL", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:19"},
-        {h: "BAYERN MONACO", a: "BARCELLONA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:26"}
-    ];
-
-    function fillTable(data, tableId) {
-        const tbody = document.querySelector(`#${tableId} tbody`);
-        data.forEach(m => {
-            const row = `<tr>
-                <td class="${teamClasses[m.h]}">${m.h}</td>
-                <td class="${teamClasses[m.a]}">${m.a}</td>
-                <td>${m.d}</td>
-                <td>${m.g}</td>
-                <td>${m.t}</td>
-                <td></td>
-            </tr>`;
-            tbody.innerHTML += row;
-        });
-    }
-
-    fillTable(matchesLeft, "tableLeft");
-    fillTable(matchesRight, "tableRight");
-</script>
-
-</body>
-</html>
+        {h: "ARSENAL", a: "BARCELLONA", d: "13/05
