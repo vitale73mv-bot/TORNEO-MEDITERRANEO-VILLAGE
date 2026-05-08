@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Trofeo Mediterraneo Village</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 { color: #000; font-size: 1.5em; margin-bottom: 5px; }
+        h2 { color: #d9534f; font-size: 1.2em; margin-top: 0; }
+        
+        .calendar-title {
+            background-color: #003366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .tables-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        table {
+            width: 100%;
+            flex: 1;
+            border-collapse: collapse;
+            min-width: 450px;
+            font-size: 0.9em;
+        }
+
+        th {
+            background-color: #003366;
+            color: white;
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Colori Squadre */
+        .real-madrid { color: #ff0000; }
+        .psg { color: #228b22; }
+        .man-city { color: #008cba; }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        @media (max-width: 900px) {
+            table { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>CALENDARIO TROFEO INTERNO "MEDITERRANEO VILLAGE FOOTBALL SOCCER"</h1>
+        <h2>CATEGORIA "PULCINI 2015/2016"</h2>
+    </header>
+
+    <div class="calendar-title">CALENDARIO</div>
+
+    <div class="tables-wrapper">
+        <!-- PRIMA COLONNA -->
+        <table>
+            <thead>
+                <tr>
+                    <th>HOME</th>
+                    <th>AWAY</th>
+                    <th>DATA</th>
+                    <th>GIORNO</th>
+                    <th>ORA</th>
+                    <th>RIS.</th>
+                </tr>
+            </thead>
+            <tbody id="col1">
+                <!-- Esempio riga -->
+            </tbody>
+        </table>
+
+        <!-- SECONDA COLONNA -->
+        <table>
+            <thead>
+                <tr>
+                    <th>HOME</th>
+                    <th>AWAY</th>
+                    <th>DATA</th>
+                    <th>GIORNO</th>
+                    <th>ORA</th>
+                    <th>RIS.</th>
+                </tr>
+            </thead>
+            <tbody id="col2">
+                <!-- Esempio riga -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const data1 = [
+        {h: "REAL MADRID", a: "PSG", d: "11/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "11/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "11/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "11/05/2026", g: "LUNEDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "13/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "13/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "13/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "13/05/2026", g: "MERCOLEDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "15/05/2026", g: "VENERDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "15/05/2026", g: "VENERDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "15/05/2026", g: "VENERDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "15/05/2026", g: "VENERDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "18/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "18/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "18/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "18/05/2026", g: "LUNEDI'", t: "18:26"}
+    ];
+
+    const data2 = [
+        {h: "REAL MADRID", a: "PSG", d: "20/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "20/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "20/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "20/05/2026", g: "MERCOLEDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "22/05/2026", g: "VENERDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "22/05/2026", g: "VENERDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "22/05/2026", g: "VENERDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "22/05/2026", g: "VENERDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "25/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "25/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "25/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "25/05/2026", g: "LUNEDI'", t: "18:26"},
+        {h: "REAL MADRID", a: "PSG", d: "27/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "REAL MADRID", a: "PSG", d: "27/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "REAL MADRID", a: "PSG", d: "27/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "PSG", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "REAL MADRID", a: "MANCHESTER CITY", d: "27/05/2026", g: "MERCOLEDI'", t: "18:26"}
+    ];
+
+    function getTeamClass(team) {
+        if(team.includes("REAL")) return "real-madrid";
+        if(team.includes("PSG")) return "psg";
+        if(team.includes("CITY")) return "man-city";
+        return "";
+    }
+
+    function populateTable(data, elementId) {
+        const tbody = document.getElementById(elementId);
+        data.forEach(match => {
+            const row = `<tr>
+                <td class="${getTeamClass(match.h)}">${match.h}</td>
+                <td class="${getTeamClass(match.a)}">${match.a}</td>
+                <td>${match.d}</td>
+                <td>${match.g}</td>
+                <td>${match.t}</td>
+                <td></td>
+            </tr>`;
+            tbody.innerHTML += row;
+        });
+    }
+
+    populateTable(data1, "col1");
+    populateTable(data2, "col2");
+</script>
+
+</body>
+</html>

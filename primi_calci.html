@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario Primi Calci - Mediterraneo Village</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 20px;
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 1.4em; margin-bottom: 5px; color: #111; }
+        h2 { font-size: 1.2em; color: #c9302c; margin-top: 0; }
+        
+        .blue-banner {
+            background-color: #002366;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .columns-wrapper {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        table {
+            width: 100%;
+            flex: 1;
+            border-collapse: collapse;
+            min-width: 450px;
+            font-size: 0.85em;
+        }
+
+        th {
+            background-color: #002366;
+            color: white;
+            padding: 8px;
+            border: 1px solid #999;
+        }
+
+        td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* Classi colori squadre */
+        .liverpool { color: #ff0000; }
+        .atletico { color: #228b22; }
+        .chelsea { color: #0074d9; }
+
+        tr:nth-child(even) { background-color: #f9f9f9; }
+
+        @media (max-width: 900px) {
+            .columns-wrapper { flex-direction: column; }
+            table { min-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <header>
+        <h1>CALENDARIO TROFEO INTERNO "MEDITERRANEO VILLAGE FOOTBALL SOCCER"</h1>
+        <h2>CATEGORIA "PRIMI CALCI 2017/2018"</h2>
+    </header>
+
+    <div class="blue-banner">CALENDARIO</div>
+
+    <div class="columns-wrapper">
+        <!-- COLONNA 1 -->
+        <table id="col1">
+            <thead>
+                <tr>
+                    <th>HOME</th>
+                    <th>AWAY</th>
+                    <th>DATA</th>
+                    <th>GIORNO</th>
+                    <th>ORA</th>
+                    <th>RISULTATO</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- COLONNA 2 -->
+        <table id="col2">
+            <thead>
+                <tr>
+                    <th>HOME</th>
+                    <th>AWAY</th>
+                    <th>DATA</th>
+                    <th>GIORNO</th>
+                    <th>ORA</th>
+                    <th>RISULTATO</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    const teamColors = {
+        "LIVERPOOL": "liverpool",
+        "ATLETICO MADRID": "atletico",
+        "CHELSEA": "chelsea"
+    };
+
+    const dataLeft = [
+        // 11/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "11/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "11/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "11/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "11/05/2026", g: "LUNEDI'", t: "18:26"},
+        // 13/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "13/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "13/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "13/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "13/05/2026", g: "MERCOLEDI'", t: "18:26"},
+        // 15/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "15/05/2026", g: "VENERDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "15/05/2026", g: "VENERDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "15/05/2026", g: "VENERDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "15/05/2026", g: "VENERDI'", t: "18:26"},
+        // 18/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "18/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "18/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "18/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "18/05/2026", g: "LUNEDI'", t: "18:26"}
+    ];
+
+    const dataRight = [
+        // 20/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "20/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "20/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "20/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "20/05/2026", g: "MERCOLEDI'", t: "18:26"},
+        // 22/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "22/05/2026", g: "VENERDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "22/05/2026", g: "VENERDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "22/05/2026", g: "VENERDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "22/05/2026", g: "VENERDI'", t: "18:26"},
+        // 25/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "25/05/2026", g: "LUNEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "25/05/2026", g: "LUNEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "25/05/2026", g: "LUNEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "25/05/2026", g: "LUNEDI'", t: "18:26"},
+        // 27/05
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "27/05/2026", g: "MERCOLEDI'", t: "17:30"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:37"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:44"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "27/05/2026", g: "MERCOLEDI'", t: "17:51"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "17:58"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "18:05"},
+        {h: "LIVERPOOL", a: "ATLETICO MADRID", d: "27/05/2026", g: "MERCOLEDI'", t: "18:12"},
+        {h: "ATLETICO MADRID", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "18:19"},
+        {h: "LIVERPOOL", a: "CHELSEA", d: "27/05/2026", g: "MERCOLEDI'", t: "18:26"}
+    ];
+
+    function buildTable(data, elementId) {
+        const tableBody = document.querySelector(`#${elementId} tbody`);
+        data.forEach(match => {
+            const tr = `<tr>
+                <td class="${teamColors[match.h]}">${match.h}</td>
+                <td class="${teamColors[match.a]}">${match.a}</td>
+                <td>${match.d}</td>
+                <td>${match.g}</td>
+                <td>${match.t}</td>
+                <td></td>
+            </tr>`;
+            tableBody.innerHTML += tr;
+        });
+    }
+
+    buildTable(dataLeft, "col1");
+    buildTable(dataRight, "col2");
+</script>
+
+</body>
+</html>
